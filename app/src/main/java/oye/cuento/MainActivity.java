@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ImageView img = (ImageView) findViewById(R.id.imageView);
-        //img.setImageResource(R.drawable.splash);
+        ImageView img = (ImageView) findViewById(R.id.imageView);
+        img.setImageResource(R.drawable.splash);
         mediaPlayer = MediaPlayer.create(this, R.raw.inicio);
         intent = new Intent(this, capsula1.class);
         count = 0;
