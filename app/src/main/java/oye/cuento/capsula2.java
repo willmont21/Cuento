@@ -49,8 +49,6 @@ public class capsula2 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.toastBottom), Toast.LENGTH_SHORT).show();
                 prueba = false;
                 hilo.cancel(prueba);
-                mediaPlayer.stop();
-
 
                 hilo.onPostExecute("resultado");
             }
@@ -73,12 +71,14 @@ public class capsula2 extends AppCompatActivity {
                     }
                 }
                 if (isCancelled())
-                    break;
+                    band = true;
             }
             return "Task Completed.";
         }
+
         @Override
         protected void onPostExecute(String result) {
+            detener(mediaPlayer);
             mediaPlayer2.start();
             for (count = 0; count <= 2; count++) {
                 try {
@@ -87,8 +87,10 @@ public class capsula2 extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                startActivity(intent);
+
             }
+            detener(mediaPlayer2);
+            startActivity(intent);
         }
 
         @Override
@@ -98,6 +100,15 @@ public class capsula2 extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Integer... values) {
         }
+
+        public void detener (MediaPlayer mediaPlayer){
+            if (mediaPlayer!= null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer= null;
+            }
+        }
+
     }
 }
 
